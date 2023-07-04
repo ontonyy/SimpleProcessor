@@ -1,0 +1,13 @@
+dependencies {
+    implementation project(":app:kafka")
+    implementation project(":app:models")
+    implementation project(":app:persistence")
+    implementation project(":app:rest")
+    implementation project(":app:service")
+
+    implementation("org.springframework.boot:spring-boot-starter-web")
+    implementation("org.springframework.boot:spring-boot-starter-actuator")
+
+    runtimeOnly "org.springframework.boot:spring-boot-devtools"
+    testImplementation "io.projectreactor:reactor-test"
+}

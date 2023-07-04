@@ -1,0 +1,15 @@
+buildscript {
+	repositories {
+		maven {
+			mavenCentral()
+			url "https://plugins.gradle.org/m2/"
+		}
+	}
+
+	dependencies {
+		classpath "org.springframework.boot:spring-boot-gradle-plugin:${springframework_version}"
+		classpath "com.bmuschko:gradle-docker-plugin:${gradle_docker_plugin_version}"
+	}
+}
+
+apply from: "${project.rootDir}/gradle/config/service.gradle"

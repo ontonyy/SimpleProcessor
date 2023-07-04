@@ -1,0 +1,7 @@
+dependencies {
+    implementation project(":app:service")
+    implementation project(":app:models")
+
+    implementation "org.springframework.boot:spring-boot-starter-web"
+    implementation "jakarta.validation:jakarta.validation-api:${validation_jakarta_version}"
+}

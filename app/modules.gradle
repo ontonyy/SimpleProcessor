@@ -1,0 +1,6 @@
+include ':app'
+include ':app:kafka'
+include ':app:models'
+include ':app:persistence'
+include ':app:rest'
+include ':app:service'

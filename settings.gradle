@@ -1,0 +1,3 @@
+rootProject.name = 'simple_backend'
+
+apply from: "app/modules.gradle"

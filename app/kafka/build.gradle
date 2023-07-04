@@ -1,0 +1,11 @@
+dependencies {
+    implementation project(":app:models")
+
+    implementation "org.springframework.boot:spring-boot"
+    implementation "org.springframework.boot:spring-boot-autoconfigure"
+    implementation "org.springframework.kafka:spring-kafka"
+    implementation "com.fasterxml.jackson.core:jackson-core:${jackson_version}"
+    implementation "com.fasterxml.jackson.datatype:jackson-datatype-jsr310:${jackson_version}"
+
+    testImplementation 'org.springframework.kafka:spring-kafka-test'
+}
