@@ -1,9 +1,9 @@
-package com.simple.rest.controller;
+package com.simple.rest.config;
 
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
 
 @Configuration
-@ComponentScan({"com.simple.rest"})
+@ComponentScan(basePackages = "com.simple.rest")
 public class SimpleControllerConfig {
 }

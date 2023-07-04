@@ -10,8 +10,9 @@ import com.simple.models.requests.SimpleCreateRequest;
 import com.simple.models.responses.SimpleResponse;
 import com.simple.persistence.entity.SimpleEntity;
 import com.simple.persistence.entity.TripEntity;
+import com.simple.persistence.mapper.config.SimpleMapperConfig;
 
-@Mapper
+@Mapper(config = SimpleMapperConfig.class)
 public interface ModelsMapper {
     ModelsMapper INSTANCE = Mappers.getMapper(ModelsMapper.class);
 
