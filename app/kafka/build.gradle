@@ -1,4 +1,5 @@
 dependencies {
+    implementation project(":app:service-api")
     implementation project(":app:models")
 
     implementation "org.springframework.boot:spring-boot"

@@ -16,5 +16,5 @@ public class SimpleCreateRequest {
     @NotNull String password;
     @NotNull String email;
     @NotNull String gender;
-    @NotNull SimpleSubRequest sub;
+    @NotNull SimpleAddressRequest address;
 }

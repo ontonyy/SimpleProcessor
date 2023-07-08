@@ -1,3 +1,6 @@
 rootProject.name = 'simple_backend'
 
 apply from: "app/modules.gradle"
+include 'app:service-api'
+findProject(':app:service-api')?.name = 'service-api'
+

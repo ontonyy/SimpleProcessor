@@ -8,16 +8,14 @@ import org.springframework.data.mongodb.core.mapping.Document;
 
 import com.simple.models.enums.Gender;
 
-import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
-import lombok.NoArgsConstructor;
+import lombok.EqualsAndHashCode;
 
 @Document
 @Data
 @Builder
-@NoArgsConstructor
-@AllArgsConstructor
+@EqualsAndHashCode(of = "id")
 public class SimpleEntity {
     @Id private String id;
 
@@ -26,7 +24,7 @@ public class SimpleEntity {
     private String password;
     private String email;
     private Gender gender;
-    private SimpleSubEntity sub;
+    private SimpleAddressEntity address;
     private Set<TripEntity> trips;
     private ZonedDateTime createdTime;
 }

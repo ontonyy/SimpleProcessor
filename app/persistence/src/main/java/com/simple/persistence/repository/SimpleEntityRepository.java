@@ -6,5 +6,5 @@ import org.springframework.stereotype.Repository;
 import com.simple.persistence.entity.SimpleEntity;
 
 @Repository
-public interface SimpleRepository extends MongoRepository<SimpleEntity, String> {
+public interface SimpleEntityRepository extends MongoRepository<SimpleEntity, String> {
 }
