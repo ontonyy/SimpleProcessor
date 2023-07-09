@@ -30,7 +30,7 @@ public class SimpleKafkaPublisherImpl implements SimpleKafkaPublisher {
         final Message<byte[]> message = MessageBuilder
                                         .withPayload(payload)
                                         .setHeader(KafkaHeaders.TOPIC, simpleKafkaTopicsProperties.getSimple().getName())
-                                        .setHeader(PAYLOAD_TYPE_HEADER, messageType)
+                                        .setHeader(PAYLOAD_TYPE_HEADER, messageType.getName())
                                         .build();
 
         log.info("Will be sent simple message: {}", simpleRequest);

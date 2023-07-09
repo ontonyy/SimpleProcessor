@@ -4,6 +4,7 @@ import org.springframework.stereotype.Service;
 
 import com.simple.models.dto.SimpleBigResponseDto;
 import com.simple.models.dto.SimpleResponseDto;
+import com.simple.models.enums.SimpleKafkaMessageType;
 import com.simple.models.kafka.SimpleKafkaRequest;
 import com.simple.models.requests.SimpleCreateRequest;
 import com.simple.persistence.entity.SimpleEntity;
@@ -28,23 +29,29 @@ public class SimpleServiceImpl implements SimpleService {
         final SimpleBigResponseDto simpleResponse = ModelsMapper.INSTANCE.convertToSimpleResponse(simple);
 
         final SimpleKafkaRequest kafkaRequest = new SimpleKafkaRequest("message bla-bla-bla");
-        kafkaPublisher.publish(kafkaRequest);
+        kafkaPublisher.publish(kafkaRequest, SimpleKafkaMessageType.SIMPLE_REQUEST);
 
         return simpleResponse;
     }
 
+    @Override
     public SimpleBigResponseDto findSimpleEntity(final Long id) {
         log.info("Executed finding Simple entity");
         final SimpleKafkaRequest simpleRequest = new SimpleKafkaRequest(String.valueOf(id));
-        kafkaPublisher.publish(null);
+        kafkaPublisher.publish(simpleRequest, SimpleKafkaMessageType.SIMPLE_REQUEST);
         return new SimpleBigResponseDto(null, null, null, null, null);
+    }
+
+    @Override
+    public void findSimpleMessageResponse(final SimpleKafkaRequest simpleKafkaRequest) {
+        log.info("Trying to find simple message response in db {}", simpleKafkaRequest);
     }
 
     @Override
     public SimpleResponseDto doSimple() {
         final String message = "Hello, hello, I am good guy, I think ...";
-        final SimpleKafkaRequest kafkaRequest = new SimpleKafkaRequest(null);
-        kafkaPublisher.publish(null);
+        final SimpleKafkaRequest kafkaRequest = new SimpleKafkaRequest(message);
+        kafkaPublisher.publish(kafkaRequest, SimpleKafkaMessageType.SIMPLE_REQUEST);
         return new SimpleResponseDto(message);
     }
 }
