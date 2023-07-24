@@ -40,11 +40,11 @@ public class SimpleKafkaConverterImpl implements SimpleKafkaConverter {
     }
 
     @Override
-    public byte[] convertBytes(final SimpleKafkaRequest simpleResponse) {
+    public byte[] convertBytes(final Object object) {
         try {
-            return objectMapper.writeValueAsBytes(simpleResponse);
+            return objectMapper.writeValueAsBytes(object);
         } catch (JsonProcessingException ex) {
-            log.error("Cannot be serialized to bytes: {}", simpleResponse, ex);
+            log.error("Cannot be serialized to bytes: {}", object, ex);
             throw new SimpleException(ex);
         }
     }

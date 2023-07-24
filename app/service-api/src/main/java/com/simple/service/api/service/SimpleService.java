@@ -6,8 +6,9 @@ import com.simple.models.kafka.SimpleKafkaRequest;
 import com.simple.models.requests.SimpleCreateRequest;
 
 public interface SimpleService {
-    SimpleBigResponseDto createSimpleEntity(final SimpleCreateRequest simpleRequest);
-    SimpleBigResponseDto findSimpleEntity(final Long id);
-    void findSimpleMessageResponse(final SimpleKafkaRequest simpleKafkaRequest);
+    SimpleBigResponseDto create(final SimpleCreateRequest simpleRequest);
+    SimpleBigResponseDto find(final String id);
+    void doSimpleRequest(final SimpleKafkaRequest simpleKafkaRequest);
+    void doSimpleCreateRequest(final SimpleCreateRequest createRequest);
     SimpleResponseDto doSimple();
 }

@@ -7,6 +7,14 @@ allprojects {
     sourceCompatibility = 17
     targetCompatibility = 17
 
+    bootJar {
+        enabled = false
+    }
+
+    jar {
+        enabled = true
+    }
+
     repositories {
         mavenLocal()
         mavenCentral()
@@ -23,6 +31,8 @@ allprojects {
         implementation "com.fasterxml.jackson.module:jackson-module-jaxb-annotations"
         implementation "org.slf4j:slf4j-api:${slf4j_version}"
         implementation "org.mapstruct:mapstruct:${mapstruct_version}"
+        annotationProcessor "org.mapstruct:mapstruct-processor:${mapstruct_version}"
+        testAnnotationProcessor "org.mapstruct:mapstruct-processor:${mapstruct_version}"
 
         compileOnly "org.projectlombok:lombok"
         annotationProcessor "org.projectlombok:lombok"
@@ -39,6 +49,10 @@ allprojects {
     }
 
     test {
+        testLogging {
+            events "passed", "skipped", "failed", "standardOut", "standardError"
+            exceptionFormat "full"
+        }
         useJUnitPlatform()
     }
 

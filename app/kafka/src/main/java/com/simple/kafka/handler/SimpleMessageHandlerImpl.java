@@ -9,6 +9,7 @@ import org.springframework.stereotype.Component;
 import com.simple.kafka.config.SimpleKafkaTopicsProperties;
 import com.simple.models.enums.SimpleKafkaMessageType;
 import com.simple.models.kafka.SimpleKafkaRequest;
+import com.simple.models.requests.SimpleCreateRequest;
 import com.simple.service.api.converter.SimpleKafkaConverter;
 import com.simple.service.api.service.SimpleService;
 
@@ -41,7 +42,9 @@ public class SimpleMessageHandlerImpl implements SimpleMessageHandler {
             }
 
             if (kafkaMessageType.get().equals(SimpleKafkaMessageType.SIMPLE_REQUEST)) {
-                simpleService.findSimpleMessageResponse((SimpleKafkaRequest) deserialized);
+                simpleService.doSimpleRequest((SimpleKafkaRequest) deserialized);
+            } else if (kafkaMessageType.get().equals(SimpleKafkaMessageType.SIMPLE_CREATE_REQUEST)) {
+                simpleService.doSimpleCreateRequest((SimpleCreateRequest) deserialized);
             }
 
             acknowledgment.acknowledge();

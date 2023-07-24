@@ -25,14 +25,14 @@ public class SimpleController {
     private final SimpleService simpleService;
 
     @PostMapping("/create")
-    public ResponseEntity<SimpleBigResponseDto> create(@Valid @RequestBody final SimpleCreateRequest userRequest) {
-        final SimpleBigResponseDto simpleResponse = simpleService.createSimpleEntity(userRequest);
+    public ResponseEntity<SimpleBigResponseDto> create(@Valid @RequestBody final SimpleCreateRequest createRequest) {
+        final SimpleBigResponseDto simpleResponse = simpleService.create(createRequest);
         return ResponseEntity.ok(simpleResponse);
     }
 
     @GetMapping("/find/{id}")
-    public ResponseEntity<SimpleBigResponseDto> find(@PathVariable(name = "id") final Long id) {
-        final SimpleBigResponseDto simpleResponse = simpleService.findSimpleEntity(id);
+    public ResponseEntity<SimpleBigResponseDto> find(@PathVariable(name = "id") final String id) {
+        final SimpleBigResponseDto simpleResponse = simpleService.find(id);
         return ResponseEntity.ok(simpleResponse);
     }
 

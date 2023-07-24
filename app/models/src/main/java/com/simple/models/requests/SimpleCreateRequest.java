@@ -11,10 +11,10 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 @Data
 public class SimpleCreateRequest {
-    @NotNull String firstName;
-    @NotNull String lastName;
-    @NotNull String password;
-    @NotNull String email;
-    @NotNull String gender;
-    @NotNull SimpleAddressRequest address;
+    @NotNull private String firstName;
+    @NotNull private String lastName;
+    @NotNull private String password;
+    @NotNull private String email;
+    @NotNull private String gender;
+    @NotNull private SimpleAddressRequest address;
 }

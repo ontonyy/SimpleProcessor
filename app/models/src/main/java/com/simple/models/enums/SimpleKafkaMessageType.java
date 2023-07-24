@@ -4,12 +4,14 @@ import java.util.Arrays;
 import java.util.Optional;
 
 import com.simple.models.kafka.SimpleKafkaRequest;
+import com.simple.models.requests.SimpleCreateRequest;
 
 import lombok.Getter;
 
 @Getter
 public enum SimpleKafkaMessageType {
-    SIMPLE_REQUEST("SIMPLE_REQUEST", SimpleKafkaRequest.class);
+    SIMPLE_REQUEST("SIMPLE_REQUEST", SimpleKafkaRequest.class),
+    SIMPLE_CREATE_REQUEST("SIMPLE_CREATE_REQUEST", SimpleCreateRequest.class);
 
     private final String name;
     private final Class<?> clazz;

@@ -2,7 +2,6 @@ dependencies {
     implementation project(":app:models")
 
     implementation "org.springframework.boot:spring-boot-starter-data-mongodb"
-    implementation "org.projectlombok:lombok-mapstruct-binding:${lombok_mapstruct_binding_version}"
 
     testImplementation "org.testcontainers:mysql:${test_containers_version}"
     testImplementation("org.testcontainers:testcontainers")

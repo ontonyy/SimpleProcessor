@@ -1,4 +1,4 @@
-package com.simple.persistence.mapper.config;
+package com.simple.service.mapper.config;
 
 import org.mapstruct.CollectionMappingStrategy;
 import org.mapstruct.MapperConfig;

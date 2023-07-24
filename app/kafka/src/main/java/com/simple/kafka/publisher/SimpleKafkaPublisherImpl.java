@@ -10,7 +10,6 @@ import org.springframework.stereotype.Component;
 
 import com.simple.kafka.config.SimpleKafkaTopicsProperties;
 import com.simple.models.enums.SimpleKafkaMessageType;
-import com.simple.models.kafka.SimpleKafkaRequest;
 import com.simple.service.api.converter.SimpleKafkaConverter;
 import com.simple.service.api.publisher.SimpleKafkaPublisher;
 
@@ -25,15 +24,15 @@ public class SimpleKafkaPublisherImpl implements SimpleKafkaPublisher {
     private final SimpleKafkaTopicsProperties simpleKafkaTopicsProperties;
     private final SimpleKafkaConverter simpleKafkaConverter;
 
-    public void publish(final SimpleKafkaRequest simpleRequest, final SimpleKafkaMessageType messageType) {
-        final byte[] payload = simpleKafkaConverter.convertBytes(simpleRequest);
+    public void publish(final Object object, final SimpleKafkaMessageType messageType) {
+        final byte[] payload = simpleKafkaConverter.convertBytes(object);
         final Message<byte[]> message = MessageBuilder
                                         .withPayload(payload)
                                         .setHeader(KafkaHeaders.TOPIC, simpleKafkaTopicsProperties.getSimple().getName())
                                         .setHeader(PAYLOAD_TYPE_HEADER, messageType.getName())
                                         .build();
 
-        log.info("Will be sent simple message: {}", simpleRequest);
+        log.info("Will be sent simple message: {}", object);
         kafkaTemplate.send(message);
     }
 }
