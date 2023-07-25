@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.RestController;
 import com.simple.models.dto.SimpleBigResponseDto;
 import com.simple.models.dto.SimpleResponseDto;
 import com.simple.models.requests.SimpleCreateRequest;
+import com.simple.service.api.cache.SimpleRedisCache;
 import com.simple.service.api.service.SimpleService;
 
 import jakarta.validation.Valid;
@@ -23,6 +24,7 @@ import lombok.extern.slf4j.Slf4j;
 @RequestMapping(path = "/api/simple")
 public class SimpleController {
     private final SimpleService simpleService;
+    private final SimpleRedisCache simpleRedisCache;
 
     @PostMapping("/create")
     public ResponseEntity<SimpleBigResponseDto> create(@Valid @RequestBody final SimpleCreateRequest createRequest) {
@@ -39,6 +41,7 @@ public class SimpleController {
     @GetMapping("/hello")
     public ResponseEntity<SimpleResponseDto> hello() {
         final SimpleResponseDto simpleResponse = simpleService.doSimple();
+        simpleRedisCache.hello();
         return ResponseEntity.ok(simpleResponse);
     }
 }
