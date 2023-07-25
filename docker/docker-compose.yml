@@ -48,9 +48,11 @@ services:
       - ME_CONFIG_MONGODB_ADMINPASSWORD=123456
       - ME_CONFIG_MONGODB_SERVER=mongodb
 
-networks:
-  default:
-    name: mongo-express-network
-
-volumes:
-  data: {}
+  redis-stack:
+    image: redis:latest
+    container_name: redis-stack
+    hostname: redis-stack
+    ports:
+      - '6379:6379'
+    healthcheck:
+      test: redis-cli ping | grep -q '^PONG' || exit 1
