@@ -1,4 +1,4 @@
-# simple_backend
+# SimpleProcessor
 ## Kafka implementation
 Sending message(`bytes`) and `header` of message type to kafka topic from service and then consumed same topic bytes and special headers with 
 defining type of `payload` and converting to special object of this type and process it with `service` methods
