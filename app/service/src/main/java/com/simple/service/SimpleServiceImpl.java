@@ -16,6 +16,7 @@ import com.simple.persistence.entity.SimpleAddressEntity;
 import com.simple.persistence.entity.SimplePersonEntity;
 import com.simple.persistence.repository.SimpleAddressEntityRepository;
 import com.simple.persistence.repository.SimplePersonEntityRepository;
+import com.simple.service.api.cache.SimpleRedisCache;
 import com.simple.service.api.publisher.SimpleKafkaPublisher;
 import com.simple.service.api.service.SimpleService;
 import com.simple.service.mapper.SimpleModelsMapper;
@@ -30,6 +31,7 @@ public class SimpleServiceImpl implements SimpleService {
     private final SimplePersonEntityRepository personRepository;
     private final SimpleAddressEntityRepository addressRepository;
     private final SimpleKafkaPublisher kafkaPublisher;
+    private final SimpleRedisCache simpleRedisCache;
 
     @Override
     public SimpleBigResponseDto create(final SimpleCreateRequest createRequest) {
@@ -80,6 +82,7 @@ public class SimpleServiceImpl implements SimpleService {
         final String message = "Hello, hello, I am good guy, I think ...";
         final SimpleKafkaRequest kafkaRequest = new SimpleKafkaRequest(message);
         kafkaPublisher.publish(kafkaRequest, SimpleKafkaMessageType.SIMPLE_REQUEST);
+        simpleRedisCache.hello();
         return new SimpleResponseDto(message);
     }
 
