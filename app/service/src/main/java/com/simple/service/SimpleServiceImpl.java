@@ -1,6 +1,7 @@
 package com.simple.service;
 
 import java.util.Optional;
+import java.util.Set;
 
 import org.springframework.stereotype.Service;
 
@@ -16,6 +17,7 @@ import com.simple.persistence.entity.SimpleAddressEntity;
 import com.simple.persistence.entity.SimplePersonEntity;
 import com.simple.persistence.repository.SimpleAddressEntityRepository;
 import com.simple.persistence.repository.SimplePersonEntityRepository;
+import com.simple.service.api.cache.SimpleBeanRedisCache;
 import com.simple.service.api.cache.SimpleRedisCache;
 import com.simple.service.api.publisher.SimpleKafkaPublisher;
 import com.simple.service.api.service.SimpleService;
@@ -31,7 +33,8 @@ public class SimpleServiceImpl implements SimpleService {
     private final SimplePersonEntityRepository personRepository;
     private final SimpleAddressEntityRepository addressRepository;
     private final SimpleKafkaPublisher kafkaPublisher;
-    private final SimpleRedisCache simpleRedisCache;
+    private final SimpleRedisCache redisCache;
+    private final SimpleBeanRedisCache beanRedisCache;
 
     @Override
     public SimpleBigResponseDto create(final SimpleCreateRequest createRequest) {
@@ -82,8 +85,13 @@ public class SimpleServiceImpl implements SimpleService {
         final String message = "Hello, hello, I am good guy, I think ...";
         final SimpleKafkaRequest kafkaRequest = new SimpleKafkaRequest(message);
         kafkaPublisher.publish(kafkaRequest, SimpleKafkaMessageType.SIMPLE_REQUEST);
-        simpleRedisCache.hello();
+        redisCache.hello();
         return new SimpleResponseDto(message);
+    }
+
+    @Override
+    public Set<String> getBeanNames() {
+        return beanRedisCache.get();
     }
 
     private SimpleAddressEntity saveAddress(final SimpleAddressRequest addressRequest) {

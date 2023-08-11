@@ -1,4 +1,4 @@
-package com.simple.cache.redis.config;
+package com.simple.cache.config;
 
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;

@@ -1,8 +1,4 @@
-rootProject.name = 'simple_backend'
+rootProject.name = 'SimpleProcessor'
 
 apply from: "app/modules.gradle"
-include 'app:service-api'
-findProject(':app:service-api')?.name = 'service-api'
-include 'app:cache'
-findProject(':app:cache')?.name = 'cache'
 

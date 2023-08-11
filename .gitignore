@@ -22,20 +22,29 @@
 # virtual machine crash logs, see http://www.java.com/en/download/help/error_hotspot.xml
 hs_err_pid*
 
-# Gradle
-build/
+#Gradle
+**/build/
 .gradle/
-!gradle/wrapper/gradle-wrapper.jar
 
-# IntelliJ
+#IntelliJ
 .idea
 *.iml
 out/
 gen/
-# Vim temp files
-*.sw*
+generated/
 
-# JPA model generated files
+#Vim
+*.swp
+
+!gradle-wrapper.jar
+!app/libs/sportradar-odds-sdk-2.0.56-core.jar
+!app/libs/sportradar-odds-sdk-2.0.56-core-javadoc.jar
+!app/libs/sportradar-odds-sdk-2.0.56-core-sources.jar
+
+# Generated sources
 **/src/jpaModelgen
-**/src/main/generated/
 **/src-gen
+**/gen
+**/src/generated
+/helm/**/Chart.lock
+/helm/**/charts/**

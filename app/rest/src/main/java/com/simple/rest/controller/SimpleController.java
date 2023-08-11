@@ -1,5 +1,7 @@
 package com.simple.rest.controller;
 
+import java.util.Set;
+
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -40,5 +42,11 @@ public class SimpleController {
     public ResponseEntity<SimpleResponseDto> hello() {
         final SimpleResponseDto simpleResponse = simpleService.doSimple();
         return ResponseEntity.ok(simpleResponse);
+    }
+
+    @GetMapping("/beans")
+    public ResponseEntity<Set<String>> getBeanNames() {
+        final Set<String> beanNames = simpleService.getBeanNames();
+        return ResponseEntity.ok(beanNames);
     }
 }
