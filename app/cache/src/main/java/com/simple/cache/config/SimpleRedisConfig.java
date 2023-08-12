@@ -8,7 +8,7 @@ import org.springframework.data.redis.core.RedisTemplate;
 import org.springframework.data.redis.serializer.RedisSerializer;
 
 @Configuration
-@ComponentScan("com.simple.cache.redis")
+@ComponentScan("com.simple.cache")
 public class SimpleRedisConfig {
     @Bean
     public RedisTemplate<String, Long> redisTemplate(final RedisConnectionFactory connectionFactory) {

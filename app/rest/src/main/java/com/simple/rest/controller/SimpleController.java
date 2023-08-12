@@ -15,6 +15,9 @@ import com.simple.models.dto.SimpleResponseDto;
 import com.simple.models.requests.SimpleCreateRequest;
 import com.simple.service.api.service.SimpleService;
 
+import io.swagger.v3.oas.annotations.Operation;
+import io.swagger.v3.oas.annotations.tags.Tag;
+import jakarta.servlet.http.HttpServletRequest;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -22,6 +25,7 @@ import lombok.extern.slf4j.Slf4j;
 @Slf4j
 @RestController
 @RequiredArgsConstructor
+@Tag(name = "SimpleController", description = "Simple Controller API")
 @RequestMapping(path = "/api/simple")
 public class SimpleController {
     private final SimpleService simpleService;
@@ -45,6 +49,7 @@ public class SimpleController {
     }
 
     @GetMapping("/beans")
+    @Operation(summary = "Get beans of application, especially will be config beans")
     public ResponseEntity<Set<String>> getBeanNames() {
         final Set<String> beanNames = simpleService.getBeanNames();
         return ResponseEntity.ok(beanNames);

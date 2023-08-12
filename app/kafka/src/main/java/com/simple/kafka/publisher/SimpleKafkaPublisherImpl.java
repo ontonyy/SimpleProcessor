@@ -2,8 +2,14 @@ package com.simple.kafka.publisher;
 
 import static com.simple.kafka.config.SimpleKafkaConfig.PAYLOAD_TYPE_HEADER;
 
+import java.util.Objects;
+import java.util.Optional;
+import java.util.concurrent.CompletableFuture;
+import java.util.concurrent.ExecutionException;
+
 import org.springframework.kafka.core.KafkaTemplate;
 import org.springframework.kafka.support.KafkaHeaders;
+import org.springframework.kafka.support.SendResult;
 import org.springframework.messaging.Message;
 import org.springframework.messaging.support.MessageBuilder;
 import org.springframework.stereotype.Component;
@@ -14,6 +20,7 @@ import com.simple.service.api.converter.SimpleKafkaConverter;
 import com.simple.service.api.publisher.SimpleKafkaPublisher;
 
 import lombok.RequiredArgsConstructor;
+import lombok.SneakyThrows;
 import lombok.extern.slf4j.Slf4j;
 
 @Slf4j
@@ -21,18 +28,23 @@ import lombok.extern.slf4j.Slf4j;
 @RequiredArgsConstructor
 public class SimpleKafkaPublisherImpl implements SimpleKafkaPublisher {
     private final KafkaTemplate<String, byte[]> kafkaTemplate;
-    private final SimpleKafkaTopicsProperties simpleKafkaTopicsProperties;
-    private final SimpleKafkaConverter simpleKafkaConverter;
+    private final SimpleKafkaTopicsProperties kafkaTopicsProps;
+    private final SimpleKafkaConverter kafkaConverter;
 
+    @Override
     public void publish(final Object object, final SimpleKafkaMessageType messageType) {
-        final byte[] payload = simpleKafkaConverter.convertBytes(object);
-        final Message<byte[]> message = MessageBuilder
-                                        .withPayload(payload)
-                                        .setHeader(KafkaHeaders.TOPIC, simpleKafkaTopicsProperties.getSimple().getName())
-                                        .setHeader(PAYLOAD_TYPE_HEADER, messageType.getName())
-                                        .build();
-
-        log.info("Will be sent simple message: {}", object);
+        final byte[] payload = kafkaConverter.convertBytes(object);
+        final Message<byte[]> message = createMessage(payload, messageType, kafkaTopicsProps.getSimple().getName());
         kafkaTemplate.send(message);
     }
+
+    private Message<byte[]> createMessage(final byte[] payload, final SimpleKafkaMessageType messageType, final String topic) {
+        final MessageBuilder<byte[]> messageBuilder = MessageBuilder
+                                                            .withPayload(payload)
+                                                            .setHeader(KafkaHeaders.TOPIC, topic)
+                                                            .setHeader(KafkaHeaders.KEY, messageType.getName()) // messageKey is used by RobinRound for partitioning messages, that mean that message with same type will be in same partition
+                                                            .setHeader(PAYLOAD_TYPE_HEADER, messageType.getName());
+        return messageBuilder.build();
+    }
+
 }

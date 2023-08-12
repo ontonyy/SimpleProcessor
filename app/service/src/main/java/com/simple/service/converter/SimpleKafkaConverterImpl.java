@@ -28,14 +28,11 @@ public class SimpleKafkaConverterImpl implements SimpleKafkaConverter {
 
     @Override
     public <T> T deserializePayload(final byte[] payload, Class<T> clazz) {
-        if (Objects.isNull(payload)) {
-            return null;
-        }
         try {
-            return (T) objectMapper.readValue(payload, clazz);
+            return objectMapper.readValue(payload, clazz);
         } catch (IOException ex) {
             log.error("Failed with deserialize payload of class {}", clazz, ex);
-            throw new RuntimeException(ex);
+            throw new SimpleException(ex);
         }
     }
 

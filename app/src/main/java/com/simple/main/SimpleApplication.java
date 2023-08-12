@@ -11,11 +11,11 @@ import com.simple.cache.redis.SimpleBeanRedisCacheImpl;
 
 import lombok.extern.slf4j.Slf4j;
 
-@SpringBootApplication
 @Slf4j
+@SpringBootApplication
 public class SimpleApplication {
     public static void main(String[] args) {
-        ApplicationContext applicationContext = SpringApplication.run(SimpleApplication.class, args);
+        final ApplicationContext applicationContext = SpringApplication.run(SimpleApplication.class, args);
         logBeans(applicationContext);
     }
 
@@ -23,6 +23,7 @@ public class SimpleApplication {
         final List<String> beanNames = Arrays.stream(applicationContext.getBeanDefinitionNames())
                                              .filter(bean -> bean.contains("com.simple"))
                                              .toList();
+
         final SimpleBeanRedisCacheImpl beanRedisCache = applicationContext.getBean(SimpleBeanRedisCacheImpl.class);
         beanRedisCache.save(beanNames);
     }

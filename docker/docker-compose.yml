@@ -56,3 +56,6 @@ services:
       - '6379:6379'
     healthcheck:
       test: redis-cli ping | grep -q '^PONG' || exit 1
+
+volumes:
+  data: {}
