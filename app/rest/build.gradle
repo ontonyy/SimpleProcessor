@@ -2,6 +2,7 @@ dependencies {
     implementation project(":app:service-api")
     implementation project(":app:models")
 
+    implementation "org.springdoc:springdoc-openapi-starter-webmvc-ui:${springdoc_openapi_version}"
     implementation "org.springframework.boot:spring-boot-starter-web"
     implementation "jakarta.validation:jakarta.validation-api:${validation_jakarta_version}"
 }

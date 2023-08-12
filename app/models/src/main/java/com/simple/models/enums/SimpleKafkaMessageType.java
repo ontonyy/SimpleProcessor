@@ -20,10 +20,4 @@ public enum SimpleKafkaMessageType {
         this.name = name;
         this.clazz = clazz;
     }
-
-    public static Optional<SimpleKafkaMessageType> getMessageType(final String name) {
-        return Arrays.stream(values())
-                     .filter(value -> value.name().equals(name))
-                     .findFirst();
-    }
 }

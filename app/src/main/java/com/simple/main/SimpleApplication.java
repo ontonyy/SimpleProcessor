@@ -7,17 +7,24 @@ import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.ApplicationContext;
 
+import com.simple.cache.redis.SimpleBeanRedisCacheImpl;
+
 import lombok.extern.slf4j.Slf4j;
 
-@SpringBootApplication
 @Slf4j
+@SpringBootApplication
 public class SimpleApplication {
     public static void main(String[] args) {
-        ApplicationContext applicationContext = SpringApplication.run(SimpleApplication.class, args);
+        final ApplicationContext applicationContext = SpringApplication.run(SimpleApplication.class, args);
+        logBeans(applicationContext);
+    }
 
-        final List<String> projectBeans = Arrays.stream(applicationContext.getBeanDefinitionNames())
-                                                       .filter(bean -> bean.contains("com.simple."))
-                                                       .toList();
-        log.info("Project beans is total {} and: {}", projectBeans.size(), projectBeans);
+    private static void logBeans(final ApplicationContext applicationContext) {
+        final List<String> beanNames = Arrays.stream(applicationContext.getBeanDefinitionNames())
+                                             .filter(bean -> bean.contains("com.simple"))
+                                             .toList();
+
+        final SimpleBeanRedisCacheImpl beanRedisCache = applicationContext.getBean(SimpleBeanRedisCacheImpl.class);
+        beanRedisCache.save(beanNames);
     }
 }

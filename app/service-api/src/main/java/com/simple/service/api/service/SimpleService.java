@@ -1,5 +1,7 @@
 package com.simple.service.api.service;
 
+import java.util.Set;
+
 import com.simple.models.dto.SimpleBigResponseDto;
 import com.simple.models.dto.SimpleResponseDto;
 import com.simple.models.kafka.SimpleKafkaRequest;
@@ -11,4 +13,5 @@ public interface SimpleService {
     void doSimpleRequest(final SimpleKafkaRequest simpleKafkaRequest);
     void doSimpleCreateRequest(final SimpleCreateRequest createRequest);
     SimpleResponseDto doSimple();
+    Set<String> getBeanNames();
 }

@@ -7,10 +7,4 @@ public class SimpleException extends RuntimeException {
     public SimpleException(Throwable throwable) {
         super(throwable);
     }
- 
-    public SimpleException(String msg)
-    {
-        super(msg);
-        this.message = msg;
-    }
 }
