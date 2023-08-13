@@ -15,9 +15,9 @@ import com.simple.models.dto.SimpleResponseDto;
 import com.simple.models.requests.SimpleCreateRequest;
 import com.simple.service.api.service.SimpleService;
 
+import io.micrometer.core.instrument.MeterRegistry;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.tags.Tag;
-import jakarta.servlet.http.HttpServletRequest;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -29,6 +29,7 @@ import lombok.extern.slf4j.Slf4j;
 @RequestMapping(path = "/api/simple")
 public class SimpleController {
     private final SimpleService simpleService;
+    private final MeterRegistry registry;
 
     @PostMapping("/create")
     public ResponseEntity<SimpleBigResponseDto> create(@Valid @RequestBody final SimpleCreateRequest createRequest) {
@@ -45,6 +46,7 @@ public class SimpleController {
     @GetMapping("/hello")
     public ResponseEntity<SimpleResponseDto> hello() {
         final SimpleResponseDto simpleResponse = simpleService.doSimple();
+        registry.counter("hello.press", "name", simpleResponse.toString()).increment();
         return ResponseEntity.ok(simpleResponse);
     }
 

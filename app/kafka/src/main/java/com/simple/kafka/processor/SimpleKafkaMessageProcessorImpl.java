@@ -8,9 +8,8 @@ import java.util.stream.Collectors;
 import org.springframework.kafka.support.Acknowledgment;
 import org.springframework.stereotype.Service;
 
+import com.simple.kafka.handler.SimpleMessageHandler;
 import com.simple.models.enums.SimpleKafkaMessageType;
-import com.simple.service.api.kafka.SimpleKafkaMessageProcessor;
-import com.simple.service.api.kafka.SimpleMessageHandler;
 
 import lombok.SneakyThrows;
 import lombok.extern.slf4j.Slf4j;

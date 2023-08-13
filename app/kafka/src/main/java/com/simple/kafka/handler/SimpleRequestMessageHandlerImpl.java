@@ -1,8 +1,6 @@
 package com.simple.kafka.handler;
 
 import java.time.Duration;
-import java.util.Objects;
-import java.util.Optional;
 
 import org.springframework.kafka.support.Acknowledgment;
 import org.springframework.stereotype.Service;
@@ -10,13 +8,10 @@ import org.springframework.stereotype.Service;
 import com.simple.kafka.config.SimpleKafkaTopicsProperties;
 import com.simple.models.enums.SimpleKafkaMessageType;
 import com.simple.models.kafka.SimpleKafkaRequest;
-import com.simple.models.requests.SimpleCreateRequest;
 import com.simple.service.api.converter.SimpleKafkaConverter;
-import com.simple.service.api.kafka.SimpleMessageHandler;
 import com.simple.service.api.service.SimpleService;
 
 import lombok.RequiredArgsConstructor;
-import lombok.SneakyThrows;
 import lombok.extern.slf4j.Slf4j;
 
 @Slf4j

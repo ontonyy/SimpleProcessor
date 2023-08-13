@@ -57,5 +57,21 @@ services:
     healthcheck:
       test: redis-cli ping | grep -q '^PONG' || exit 1
 
+  collector:
+    image: otel/opentelemetry-collector:latest
+    volumes:
+      - ./otel-config.yml:/etc/otel-collector-config.yml
+    command: [ "--config=/etc/otel-collector-config.yml" ]
+    ports:
+      - "4317:4317"
+    depends_on:
+      - jaeger-service
+
+  jaeger-service:
+    image: jaegertracing/all-in-one:latest
+    ports:
+      - "16686:16686"
+      - "14250"
+
 volumes:
   data: {}

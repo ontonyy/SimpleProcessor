@@ -4,11 +4,11 @@ import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.time.ZonedDateTime;
 
-import org.springframework.stereotype.Service;
+import org.springframework.stereotype.Component;
 
 import com.simple.service.api.date.SimpleDateProviderService;
 
-@Service
+@Component
 public class SimpleDateProviderServiceImpl implements SimpleDateProviderService {
     @Override
     public DateFormat getDateFormat() {
@@ -16,7 +16,7 @@ public class SimpleDateProviderServiceImpl implements SimpleDateProviderService 
     }
 
     @Override
-    public ZonedDateTime currentDate() {
+    public ZonedDateTime now() {
         return ZonedDateTime.now();
     }
 }

@@ -7,10 +7,8 @@ import org.springframework.stereotype.Service;
 
 import com.simple.kafka.config.SimpleKafkaTopicsProperties;
 import com.simple.models.enums.SimpleKafkaMessageType;
-import com.simple.models.kafka.SimpleKafkaRequest;
 import com.simple.models.requests.SimpleCreateRequest;
 import com.simple.service.api.converter.SimpleKafkaConverter;
-import com.simple.service.api.kafka.SimpleMessageHandler;
 import com.simple.service.api.service.SimpleService;
 
 import lombok.RequiredArgsConstructor;

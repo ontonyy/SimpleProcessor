@@ -1,4 +1,4 @@
-package com.simple.service.api.kafka;
+package com.simple.kafka.handler;
 
 import org.springframework.kafka.support.Acknowledgment;
 

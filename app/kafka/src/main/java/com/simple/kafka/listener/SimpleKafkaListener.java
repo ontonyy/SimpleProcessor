@@ -8,7 +8,7 @@ import org.springframework.messaging.handler.annotation.Header;
 import org.springframework.messaging.handler.annotation.Payload;
 import org.springframework.stereotype.Component;
 
-import com.simple.service.api.kafka.SimpleKafkaMessageProcessor;
+import com.simple.kafka.processor.SimpleKafkaMessageProcessor;
 
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
