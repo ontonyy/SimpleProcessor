@@ -5,8 +5,8 @@ import org.springframework.context.annotation.Configuration;
 import org.springframework.data.mongodb.repository.config.EnableMongoRepositories;
 
 @Configuration
+@EnableMongoRepositories
 @ComponentScan(basePackages = "com.simple.persistence")
-@EnableMongoRepositories(basePackages = "com.simple.persistence.repository")
 public class SimpleRepositoryConfig {
 }
 

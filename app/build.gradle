@@ -17,11 +17,7 @@ dependencies {
     testImplementation "io.projectreactor:reactor-test"
 }
 
-tasks.register('customFatJar', Jar) {
-    manifest {
-        attributes "Main-Class": "com.simple.main.SimpleApplication"
-    }
-    duplicatesStrategy = DuplicatesStrategy.EXCLUDE
-    from { configurations.runtimeClasspath.collect { it.isDirectory() ? it : zipTree(it) } }
-    with jar
+bootJar {
+    enabled = true
+    destinationDirectory = file("$projectDir/../docker/jar")
 }

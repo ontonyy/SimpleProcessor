@@ -1,5 +1,4 @@
----
-version: '3'
+version: '3.3'
 
 services:
   zookeeper:
@@ -36,6 +35,8 @@ services:
       - MONGO_INITDB_ROOT_PASSWORD=123456
     volumes:
       - data:/data
+    healthcheck:
+      test: echo 'db.runCommand("ping").ok' | mongosh mongodb://root:123456@localhost:27017/ --quiet
 
   mongo-express:
     image: mongo-express:latest
@@ -48,10 +49,10 @@ services:
       - ME_CONFIG_MONGODB_ADMINPASSWORD=123456
       - ME_CONFIG_MONGODB_SERVER=mongodb
 
-  redis-stack:
+  redis:
     image: redis:latest
-    container_name: redis-stack
-    hostname: redis-stack
+    container_name: redis
+    hostname: redis
     ports:
       - '6379:6379'
     healthcheck:
@@ -72,6 +73,19 @@ services:
     ports:
       - "16686:16686"
       - "14250"
+
+  simple-processor:
+    container_name: simple-processor
+    build:
+      dockerfile: Dockerfile
+    image: simple-processor:latest
+    ports:
+      - "8080:8080"
+    depends_on:
+      mongodb:
+        condition: service_healthy
+      redis:
+        condition: service_healthy
 
 volumes:
   data: {}
