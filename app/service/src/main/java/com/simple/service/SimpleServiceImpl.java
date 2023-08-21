@@ -30,11 +30,11 @@ import lombok.extern.slf4j.Slf4j;
 @Service
 @RequiredArgsConstructor
 public class SimpleServiceImpl implements SimpleService {
-    private final SimplePersonEntityRepository personRepository;
-    private final SimpleAddressEntityRepository addressRepository;
     private final SimpleKafkaPublisher kafkaPublisher;
     private final SimpleRedisCache redisCache;
     private final SimpleBeanRedisCache beanRedisCache;
+    private final SimplePersonEntityRepository personRepository;
+    private final SimpleAddressEntityRepository addressRepository;
 
     @Override
     public SimpleBigResponseDto create(final SimpleCreateRequest createRequest) {

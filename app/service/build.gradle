@@ -1,5 +1,6 @@
 dependencies {
     implementation project(":app:service-api")
+    implementation project(":app:cache")
     implementation project(":app:kafka")
     implementation project(":app:models")
     implementation project(":app:persistence")
