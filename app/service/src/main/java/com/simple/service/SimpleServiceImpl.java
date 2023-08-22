@@ -82,7 +82,7 @@ public class SimpleServiceImpl implements SimpleService {
 
     @Override
     public SimpleResponseDto doSimple() {
-        final String message = "Hello, hello, I am good guy, I think ...";
+        final String message = "HOORAY, all is working fine!!!";
         final SimpleKafkaRequest kafkaRequest = new SimpleKafkaRequest(message);
         kafkaPublisher.publish(kafkaRequest, SimpleKafkaMessageType.SIMPLE_REQUEST);
         redisCache.hello();

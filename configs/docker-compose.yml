@@ -30,6 +30,8 @@ services:
       KAFKA_OFFSETS_TOPIC_NUM_PARTITIONS: 1
       KAFKA_NUM_PARTITIONS: 1
       KAFKA_AUTO_CREATE_TOPICS_ENABLE: "true"
+    healthcheck:
+      test: nc -z localhost 9092 || exit -1
 
   mongodb:
     image: mongo:7.0.0
@@ -43,7 +45,7 @@ services:
     volumes:
       - data:/data
     healthcheck:
-      test: echo 'db.runCommand("ping").ok' | mongosh mongodb://root:123456@localhost:27017/ --quiet
+      test: echo 'db.runCommand("ping").ok' | mongosh mongodb://root:123456@localhost:27017/ --quiet || exit 1
 
   mongo-express:
     image: mongo-express:0.54.0
@@ -83,9 +85,9 @@ services:
 
   simple-processor:
     container_name: simple-processor
-    build:
-      dockerfile: Dockerfile
     image: simple-processor:latest
+    build:
+      dockerfile: ../Dockerfile
     ports:
       - '8080:8080'
     restart: unless-stopped
@@ -94,10 +96,12 @@ services:
         condition: service_healthy
       redis-stack:
         condition: service_healthy
+      kafka:
+        condition: service_healthy
     environment:
       MONGO_HOST: mongodb
-      REDIS_HOST: redis-stack
       KAFKA_HOST: kafka
+      REDIS_HOST: redis-stack
 
 volumes:
   data: {}
