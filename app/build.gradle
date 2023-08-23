@@ -10,8 +10,8 @@ dependencies {
     implementation("org.springframework.boot:spring-boot-starter-web")
     implementation("org.springframework.boot:spring-boot-starter-actuator")
 
-    implementation(platform("io.opentelemetry:opentelemetry-bom:${opentelemetry_version}"))
-    implementation "io.opentelemetry:opentelemetry-api"
+    implementation platform("io.opentelemetry:opentelemetry-bom:${opentelemetry_version}")
+    implementation "io.opentelemetry:opentelemetry-api:${opentelemetry_version}"
     runtimeOnly "io.opentelemetry.javaagent:opentelemetry-javaagent:${opentelemetry_version}"
     runtimeOnly "org.springframework.boot:spring-boot-devtools"
     testImplementation "io.projectreactor:reactor-test"
@@ -19,5 +19,5 @@ dependencies {
 
 bootJar {
     enabled = true
-    destinationDirectory = file("$projectDir/../docker/jar")
+    destinationDirectory = file("$projectDir/../configs/jar")
 }

@@ -10,25 +10,27 @@ import org.springframework.stereotype.Service;
 
 import com.simple.kafka.handler.SimpleMessageHandler;
 import com.simple.models.enums.SimpleKafkaMessageType;
+import com.simple.service.api.MDCService;
 
-import lombok.SneakyThrows;
 import lombok.extern.slf4j.Slf4j;
 
 @Slf4j
 @Service
 public class SimpleKafkaMessageProcessorImpl implements SimpleKafkaMessageProcessor {
     private final Map<SimpleKafkaMessageType, SimpleMessageHandler> handlerMap;
+    private final MDCService mdcService;
 
-    public SimpleKafkaMessageProcessorImpl(final List<SimpleMessageHandler> handlers) {
+    public SimpleKafkaMessageProcessorImpl(final List<SimpleMessageHandler> handlers, final MDCService mdcService) {
         this.handlerMap = handlers.stream().collect(Collectors.toMap(SimpleMessageHandler::forType, Function.identity()));
+        this.mdcService = mdcService;
     }
 
     @Override
-    @SneakyThrows
     public void process(final byte[] payload, final Acknowledgment acknowledgment, final String messageType) {
-        final SimpleKafkaMessageType type = SimpleKafkaMessageType.valueOf(messageType);
-        log.info("Consuming message from simple kafka with type {}", type);
-
-        handlerMap.get(type).handle(payload, acknowledgment);
+        mdcService.putDiagnosticDockerized(() -> {
+            final SimpleKafkaMessageType type = SimpleKafkaMessageType.valueOf(messageType);
+            log.info("Consuming message from simple kafka with type {}", type);
+            handlerMap.get(type).handle(payload, acknowledgment);
+        });
     }
 }

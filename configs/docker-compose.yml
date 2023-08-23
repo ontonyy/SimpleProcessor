@@ -67,21 +67,11 @@ services:
     healthcheck:
       test: redis-cli ping | grep -q '^PONG' || exit 1
 
-  collector:
-    image: otel/opentelemetry-collector:0.83.0
-    volumes:
-      - ./otel-config.yml:/etc/otel-collector-config.yml
-    command: [ "--config=/etc/otel-collector-config.yml" ]
-    ports:
-      - '4317:4317'
-    depends_on:
-      - jaeger-service
-
-  jaeger-service:
+  jaeger:
     image: jaegertracing/all-in-one:1.48.0
     ports:
-      - '16686:16686'
-      - '14250'
+      - "16686:16686"
+      - "14250:14250"
 
   simple-processor:
     container_name: simple-processor
@@ -102,6 +92,12 @@ services:
       MONGO_HOST: mongodb
       KAFKA_HOST: kafka
       REDIS_HOST: redis-stack
+      LOGGING_PREFIX: Dockerized
+      OTEL_SERVICE_NAME: simple-processor
+      OTEL_METRICS_EXPORTER: none
+      OTEL_TRACES_EXPORTER: jaeger
+      OTEL_EXPORTER_JAEGER_ENDPOINT: http://jaeger:14250
+
 
 volumes:
   data: {}

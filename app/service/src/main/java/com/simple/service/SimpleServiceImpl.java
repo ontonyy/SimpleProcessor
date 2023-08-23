@@ -20,7 +20,7 @@ import com.simple.persistence.repository.SimplePersonEntityRepository;
 import com.simple.service.api.cache.SimpleBeanRedisCache;
 import com.simple.service.api.cache.SimpleRedisCache;
 import com.simple.service.api.publisher.SimpleKafkaPublisher;
-import com.simple.service.api.service.SimpleService;
+import com.simple.service.api.SimpleService;
 import com.simple.service.mapper.SimpleModelsMapper;
 
 import lombok.RequiredArgsConstructor;
@@ -91,6 +91,7 @@ public class SimpleServiceImpl implements SimpleService {
 
     @Override
     public Set<String> getBeanNames() {
+        log.info("Get service bean names (configs)");
         return beanRedisCache.get();
     }
 

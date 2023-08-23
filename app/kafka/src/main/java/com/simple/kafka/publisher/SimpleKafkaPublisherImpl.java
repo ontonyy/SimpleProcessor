@@ -27,7 +27,10 @@ public class SimpleKafkaPublisherImpl implements SimpleKafkaPublisher {
     @Override
     public void publish(final Object object, final SimpleKafkaMessageType messageType) {
         final byte[] payload = kafkaConverter.convertBytes(object);
-        final Message<byte[]> message = createMessage(payload, messageType, kafkaTopicsProps.getSimple().getName());
+        final String topicName = kafkaTopicsProps.getSimple().getName();
+        final Message<byte[]> message = createMessage(payload, messageType, topicName);
+
+        log.info("Sending message with type {} to kafka topic {}", messageType, topicName);
         kafkaTemplate.send(message);
     }
 

@@ -6,7 +6,8 @@ RUN gradle clean build --no-daemon
 FROM eclipse-temurin:17
 
 # If check bootJar then you will see that in /docker/jar/*.jar creating file, because was changed destination dir
-COPY --from=build /temp/docker/jar/*.jar /app/app.jar
+COPY --from=build /temp/configs/jar/app.jar /app/app.jar
+COPY /configs/jar/opentelemetry-javaagent.jar /app/opentelemetry-javaagent.jar
 WORKDIR /app
 EXPOSE 8080
-ENTRYPOINT ["java", "-jar", "app.jar"]
+ENTRYPOINT ["java", "-javaagent:opentelemetry-javaagent.jar", "-jar", "app.jar"]

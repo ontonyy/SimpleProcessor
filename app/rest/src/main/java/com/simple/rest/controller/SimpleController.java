@@ -13,7 +13,7 @@ import org.springframework.web.bind.annotation.RestController;
 import com.simple.models.dto.SimpleBigResponseDto;
 import com.simple.models.dto.SimpleResponseDto;
 import com.simple.models.requests.SimpleCreateRequest;
-import com.simple.service.api.service.SimpleService;
+import com.simple.service.api.SimpleService;
 
 import io.micrometer.core.instrument.MeterRegistry;
 import io.swagger.v3.oas.annotations.Operation;

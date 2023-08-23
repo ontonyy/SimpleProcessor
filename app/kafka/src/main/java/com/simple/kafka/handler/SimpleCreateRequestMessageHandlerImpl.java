@@ -10,7 +10,7 @@ import com.simple.models.enums.SimpleKafkaMessageType;
 import com.simple.models.requests.SimpleCreateRequest;
 import com.simple.service.api.converter.SimpleKafkaConverter;
 import com.simple.service.api.date.SimpleDateProviderService;
-import com.simple.service.api.service.SimpleService;
+import com.simple.service.api.SimpleService;
 
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
