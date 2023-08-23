@@ -20,7 +20,7 @@ import com.simple.persistence.repository.SimplePersonEntityRepository;
 import com.simple.service.api.cache.SimpleBeanRedisCache;
 import com.simple.service.api.cache.SimpleRedisCache;
 import com.simple.service.api.publisher.SimpleKafkaPublisher;
-import com.simple.service.api.service.SimpleService;
+import com.simple.service.api.SimpleService;
 import com.simple.service.mapper.SimpleModelsMapper;
 
 import lombok.RequiredArgsConstructor;
@@ -30,11 +30,11 @@ import lombok.extern.slf4j.Slf4j;
 @Service
 @RequiredArgsConstructor
 public class SimpleServiceImpl implements SimpleService {
-    private final SimplePersonEntityRepository personRepository;
-    private final SimpleAddressEntityRepository addressRepository;
     private final SimpleKafkaPublisher kafkaPublisher;
     private final SimpleRedisCache redisCache;
     private final SimpleBeanRedisCache beanRedisCache;
+    private final SimplePersonEntityRepository personRepository;
+    private final SimpleAddressEntityRepository addressRepository;
 
     @Override
     public SimpleBigResponseDto create(final SimpleCreateRequest createRequest) {
@@ -82,7 +82,7 @@ public class SimpleServiceImpl implements SimpleService {
 
     @Override
     public SimpleResponseDto doSimple() {
-        final String message = "Hello, hello, I am good guy, I think ...";
+        final String message = "HOORAY, all is working fine!!!";
         final SimpleKafkaRequest kafkaRequest = new SimpleKafkaRequest(message);
         kafkaPublisher.publish(kafkaRequest, SimpleKafkaMessageType.SIMPLE_REQUEST);
         redisCache.hello();
@@ -91,6 +91,7 @@ public class SimpleServiceImpl implements SimpleService {
 
     @Override
     public Set<String> getBeanNames() {
+        log.info("Get service bean names (configs)");
         return beanRedisCache.get();
     }
 

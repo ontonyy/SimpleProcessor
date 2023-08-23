@@ -11,10 +11,6 @@ allprojects {
         enabled = false
     }
 
-    jar {
-        enabled = true
-    }
-
     repositories {
         mavenLocal()
         mavenCentral()

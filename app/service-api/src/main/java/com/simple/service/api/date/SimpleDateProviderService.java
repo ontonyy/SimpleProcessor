@@ -5,6 +5,5 @@ import java.time.ZonedDateTime;
 
 public interface SimpleDateProviderService {
     DateFormat getDateFormat();
-    ZonedDateTime currentDate();
-
+    ZonedDateTime now();
 }

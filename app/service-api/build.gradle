@@ -1,4 +1,3 @@
 dependencies {
     implementation project(":app:models")
-    implementation "org.springframework.kafka:spring-kafka"
 }

@@ -7,11 +7,10 @@ import org.springframework.stereotype.Service;
 
 import com.simple.kafka.config.SimpleKafkaTopicsProperties;
 import com.simple.models.enums.SimpleKafkaMessageType;
-import com.simple.models.kafka.SimpleKafkaRequest;
 import com.simple.models.requests.SimpleCreateRequest;
 import com.simple.service.api.converter.SimpleKafkaConverter;
-import com.simple.service.api.kafka.SimpleMessageHandler;
-import com.simple.service.api.service.SimpleService;
+import com.simple.service.api.date.SimpleDateProviderService;
+import com.simple.service.api.SimpleService;
 
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -23,6 +22,7 @@ public class SimpleCreateRequestMessageHandlerImpl implements SimpleMessageHandl
     private final SimpleKafkaConverter kafkaConverter;
     private final SimpleKafkaTopicsProperties kafkaTopicsProperties;
     private final SimpleService service;
+    private final SimpleDateProviderService dateProviderService;
 
     @Override
     public void handle(final byte[] payload, final Acknowledgment acknowledgment) {
