@@ -1,4 +1,6 @@
 rootProject.name = 'SimpleProcessor'
 
 apply from: "app/modules.gradle"
+include 'app:error-handling'
+findProject(':app:error-handling')?.name = 'error-handling'
 

@@ -13,3 +13,9 @@ buildscript {
 		classpath "com.bmuschko:gradle-docker-plugin:${gradle_docker_plugin_version}"
 	}
 }
+
+allprojects {
+	tasks.withType(Test) {
+		jvmArgs "-Xmx2g"
+	}
+}

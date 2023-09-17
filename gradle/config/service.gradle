@@ -23,9 +23,9 @@ allprojects {
     }
 
     dependencies {
-        implementation platform("org.junit:junit-bom:${junit_bom_version}")
+        implementation "com.fasterxml.jackson.datatype:jackson-datatype-jsr310"
         implementation "com.fasterxml.jackson.module:jackson-module-jaxb-annotations"
-        implementation "org.slf4j:slf4j-api:${slf4j_version}"
+        implementation "org.slf4j:slf4j-api"
         implementation "org.mapstruct:mapstruct:${mapstruct_version}"
         annotationProcessor "org.mapstruct:mapstruct-processor:${mapstruct_version}"
         testAnnotationProcessor "org.mapstruct:mapstruct-processor:${mapstruct_version}"
@@ -35,13 +35,14 @@ allprojects {
         testCompileOnly "org.projectlombok:lombok"
         testAnnotationProcessor "org.projectlombok:lombok"
 
-        testImplementation "org.assertj:assertj-core"
-        testImplementation "org.mockito:mockito-core:${mockito_version}"
-        testImplementation "org.mockito:mockito-junit-jupiter:${mockito_version}"
-        testImplementation "org.junit.jupiter:junit-jupiter-api"
-        testImplementation "org.junit.jupiter:junit-jupiter-engine"
+        testImplementation("org.assertj:assertj-core")
+        testImplementation("org.mockito:mockito-core")
+        testImplementation("org.mockito:mockito-junit-jupiter")
+        testImplementation('org.junit.jupiter:junit-jupiter-api')
+        testImplementation('org.junit.jupiter:junit-jupiter-params')
+        testImplementation('org.springframework.boot:spring-boot-starter-test')
 
-        testImplementation "org.springframework.boot:spring-boot-starter-test"
+        testRuntimeOnly('org.junit.jupiter:junit-jupiter-engine')
     }
 
     test {

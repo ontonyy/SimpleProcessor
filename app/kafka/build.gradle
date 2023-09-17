@@ -6,5 +6,5 @@ dependencies {
     implementation "org.springframework.boot:spring-boot-autoconfigure"
     implementation "org.springframework.kafka:spring-kafka"
 
-    testImplementation 'org.springframework.kafka:spring-kafka-test'
+    testImplementation "org.springframework.kafka:spring-kafka-test"
 }
