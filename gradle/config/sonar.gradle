@@ -1,0 +1,16 @@
+apply plugin: "org.sonarqube"
+
+def paths = new HashSet<>()
+
+rootProject.subprojects.forEach(p -> {
+    paths.add("${p.buildDir}/reports/jacoco/test/jacocoTestReport.xml")
+})
+
+allprojects {
+    sonarqube {
+        properties {
+            property "sonar.coverage.jacoco.xmlReportPaths", paths
+            property "sonar.coverage.exclusions", ""
+        }
+    }
+}

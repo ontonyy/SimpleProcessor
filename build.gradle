@@ -1,11 +1,7 @@
-apply from: "${project.rootDir}/gradle/config/service.gradle"
-
 buildscript {
 	repositories {
 		mavenCentral()
-		maven {
-			url "https://plugins.gradle.org/m2/"
-		}
+		gradlePluginPortal()
 	}
 
 	dependencies {
@@ -18,4 +14,10 @@ allprojects {
 	tasks.withType(Test) {
 		jvmArgs "-Xmx2g"
 	}
+
+	tasks.withType(JavaCompile) {
+		options.compilerArgs += ["--enable-preview"]
+	}
 }
+
+apply from: "${project.rootDir}/gradle/config/core.gradle"
