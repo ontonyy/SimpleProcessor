@@ -1,4 +1,3 @@
 rootProject.name = 'SimpleProcessor'
 
 apply from: "app/modules.gradle"
-

@@ -1,3 +1,5 @@
+apply from: "${project.rootDir}/gradle/config/microservice.gradle"
+
 dependencies {
     implementation project(":app:cache")
     implementation project(":app:kafka")
@@ -6,15 +8,15 @@ dependencies {
     implementation project(":app:rest")
     implementation project(":app:service")
     implementation project(":app:service-api")
+    implementation project(":app:error-handling")
 
     implementation("org.springframework.boot:spring-boot-starter-web")
     implementation("org.springframework.boot:spring-boot-starter-actuator")
 
     implementation platform("io.opentelemetry:opentelemetry-bom:${opentelemetry_version}")
-    implementation "io.opentelemetry:opentelemetry-api:${opentelemetry_version}"
+    implementation "io.opentelemetry:opentelemetry-api"
     runtimeOnly "io.opentelemetry.javaagent:opentelemetry-javaagent:${opentelemetry_version}"
-    runtimeOnly "org.springframework.boot:spring-boot-devtools"
-    testImplementation "io.projectreactor:reactor-test"
+
 }
 
 bootJar {

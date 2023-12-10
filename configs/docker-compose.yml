@@ -2,7 +2,7 @@ version: '3.8'
 
 services:
   zookeeper:
-    image: confluentinc/cp-zookeeper:7.4.1
+    image: confluentinc/cp-zookeeper:${CONFLUENTINC_VERSION}
     container_name: zookeeper
     hostname: zookeeper
     ports:
@@ -12,7 +12,7 @@ services:
       ZOOKEEPER_TICK_TIME: 2000
 
   kafka:
-    image: confluentinc/cp-kafka:7.4.1
+    image: confluentinc/cp-kafka:${CONFLUENTINC_VERSION}
     container_name: kafka
     hostname: kafka
     ports:
@@ -34,7 +34,7 @@ services:
       test: nc -z localhost 9092 || exit -1
 
   mongodb:
-    image: mongo:7.0.0
+    image: mongo:${MONGO_VERSION}
     container_name: mongodb
     ports:
       - '27017:27017'
@@ -48,7 +48,7 @@ services:
       test: echo 'db.runCommand("ping").ok' | mongosh mongodb://root:123456@localhost:27017/ --quiet || exit 1
 
   mongo-express:
-    image: mongo-express:0.54.0
+    image: mongo-express:${MONGO_EXPRESS_VERSION}
     container_name: mongo-express
     ports:
       - '8081:8081'
@@ -59,7 +59,7 @@ services:
       - ME_CONFIG_MONGODB_SERVER=mongodb
 
   redis-stack:
-    image: redis:7.2.0
+    image: redis:${REDIS_VERSION}
     container_name: redis-stack
     hostname: redis-stack
     ports:
@@ -68,7 +68,7 @@ services:
       test: redis-cli ping | grep -q '^PONG' || exit 1
 
   jaeger:
-    image: jaegertracing/all-in-one:1.48.0
+    image: jaegertracing/all-in-one:${JAEGERTRACING_VERSION}
     ports:
       - "16686:16686"
       - "14250:14250"
