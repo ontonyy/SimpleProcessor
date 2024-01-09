@@ -1,11 +1,7 @@
-apply from: "${project.rootDir}/gradle/config/service.gradle"
-
 buildscript {
 	repositories {
 		mavenCentral()
-		maven {
-			url "https://plugins.gradle.org/m2/"
-		}
+		gradlePluginPortal()
 	}
 
 	dependencies {
@@ -13,3 +9,11 @@ buildscript {
 		classpath "com.bmuschko:gradle-docker-plugin:${gradle_docker_plugin_version}"
 	}
 }
+
+allprojects {
+	tasks.withType(JavaCompile) {
+		options.compilerArgs += ["--enable-preview"]
+	}
+}
+
+apply from: "${project.rootDir}/gradle/config/core.gradle"

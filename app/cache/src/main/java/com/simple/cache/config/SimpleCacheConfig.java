@@ -3,26 +3,17 @@ package com.simple.cache.config;
 import java.time.Duration;
 
 import org.springframework.beans.factory.annotation.Value;
+import org.springframework.boot.autoconfigure.data.redis.RedisAutoConfiguration;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
-import org.springframework.data.redis.connection.RedisConnectionFactory;
-import org.springframework.data.redis.core.RedisTemplate;
-import org.springframework.data.redis.serializer.RedisSerializer;
+import org.springframework.context.annotation.Import;
 
 @Configuration
 @ComponentScan("com.simple.cache")
+@Import(RedisAutoConfiguration.class)
 public class SimpleCacheConfig {
-    @Value("${cache.ttl:PT10S}") private String ttl; // TimeToLive = 10 seconds
-
-    @Bean
-    public RedisTemplate<String, String> redisTemplate(final RedisConnectionFactory redisConnectionFactory) {
-        final RedisTemplate<String, String> redisTemplate = new RedisTemplate<>();
-        redisTemplate.setKeySerializer(RedisSerializer.string());
-        redisTemplate.setValueSerializer(RedisSerializer.string());
-        redisTemplate.setConnectionFactory(redisConnectionFactory);
-        return redisTemplate;
-    }
+    @Value("${cache.ttl:PT10S}") private String ttl;
 
     @Bean
     public Duration ttl() {
