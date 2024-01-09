@@ -11,10 +11,6 @@ buildscript {
 }
 
 allprojects {
-	tasks.withType(Test) {
-		jvmArgs "-Xmx2g"
-	}
-
 	tasks.withType(JavaCompile) {
 		options.compilerArgs += ["--enable-preview"]
 	}
