@@ -51,7 +51,7 @@ jobs:
       - name: Analyze test with report (SonarQube)
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-          SONAR_TOKEN: 84055d6cc327545b23e2eb088c28fa872275a2bc
+          SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
         run: ./gradlew clean build jacocoTestReport sonarqube --parallel
       - name: Publish Test Report
         uses: mikepenz/action-junit-report@v2
