@@ -1,8 +1,5 @@
 name: GitHub Actions Demo
 
-env:
-  PROJECT: SimpleProcessor
-
 run-name: ${{ github.actor }} is running GitHub Actions 🚀
 
 on:
