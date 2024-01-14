@@ -1,8 +1,11 @@
 package com.simple.service;
 
+import static com.simple.service.config.SimpleVirtualExecutorsConfig.VIRTUAL_ASYNC_EXECUTOR;
+
 import java.util.Optional;
 import java.util.Set;
 
+import org.springframework.scheduling.annotation.Async;
 import org.springframework.stereotype.Service;
 
 import com.simple.models.dto.SimpleAddressDto;
@@ -17,10 +20,10 @@ import com.simple.persistence.entity.SimpleAddressEntity;
 import com.simple.persistence.entity.SimplePersonEntity;
 import com.simple.persistence.repository.SimpleAddressEntityRepository;
 import com.simple.persistence.repository.SimplePersonEntityRepository;
+import com.simple.service.api.SimpleService;
 import com.simple.service.api.cache.SimpleBeanRedisCache;
 import com.simple.service.api.cache.SimpleRedisCache;
 import com.simple.service.api.publisher.SimpleKafkaPublisher;
-import com.simple.service.api.SimpleService;
 import com.simple.service.mapper.SimpleModelsMapper;
 
 import lombok.RequiredArgsConstructor;
@@ -70,9 +73,11 @@ public class SimpleServiceImpl implements SimpleService {
         return null;
     }
 
+    @Async(VIRTUAL_ASYNC_EXECUTOR)
     @Override
     public void doSimpleRequest(final SimpleKafkaRequest kafkaRequest) {
         log.info("Trying to find simple kafka request in db {}", kafkaRequest);
+        log.info("DoSimpleRequest have current thread name: {}", Thread.currentThread().getName());
     }
 
     @Override

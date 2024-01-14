@@ -2,7 +2,8 @@
 docker-compose down
 
 # Rebuild service image, because of changes handling
-docker build -t simple-processor ../
+cd .. && ./gradlew clean build --parallel
+docker build -t simple-processor .
 
 # Run multi-containers with necessary services
-docker-compose up -d
+cd configs && docker-compose up

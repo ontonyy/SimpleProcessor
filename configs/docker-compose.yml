@@ -77,7 +77,7 @@ services:
     container_name: simple-processor
     image: simple-processor:latest
     build:
-      dockerfile: ../Dockerfile
+      dockerfile: Dockerfile
     ports:
       - '8080:8080'
     restart: unless-stopped

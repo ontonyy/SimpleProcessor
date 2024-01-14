@@ -26,11 +26,12 @@ public class SimpleKafkaMessageProcessorImpl implements SimpleKafkaMessageProces
     }
 
     @Override
-    public void process(final byte[] payload, final Acknowledgment acknowledgment, final String messageType) {
+    public void process(final byte[] payload, final Acknowledgment ack, final String messageType) {
         mdcService.putDiagnosticDockerized(() -> {
             final SimpleKafkaMessageType type = SimpleKafkaMessageType.valueOf(messageType);
+            handlerMap.get(type).handle(payload, ack);
+
             log.info("Consuming message from simple kafka with type {}", type);
-            handlerMap.get(type).handle(payload, acknowledgment);
         });
     }
 }
