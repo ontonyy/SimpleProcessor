@@ -1,10 +1,8 @@
 apply plugin: "org.sonarqube"
 
-def paths = new HashSet<>()
-
-rootProject.subprojects.forEach(p -> {
-    paths.add("${p.buildDir}/reports/jacoco/test/jacocoTestReport.xml")
-})
+def paths = rootProject.subprojects.collect {
+    "${it.buildDir}/reports/jacoco/test/jacocoTestReport.xml"
+}.findAll { new File(it).exists() }
 
 allprojects {
     sonarqube {
