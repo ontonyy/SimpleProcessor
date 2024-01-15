@@ -58,19 +58,13 @@ jobs:
       - name: Send mail to Gmail
         uses: dawidd6/action-send-mail@v3
         with:
-          connection_url: ${{ secrets.MAIL_CONNECTION }}
+          subject: Github Actions job result
+          body: Build job of ${{ github.repository }} completed successfully!
+          from: Action Githuber
+          to: ${{ secrets.MAIL_TO_USERNAMES }}
           server_address: smtp.gmail.com
           server_port: 465
+          connection_url: ${{ secrets.MAIL_CONNECTION }}
           username: ${{ secrets.MAIL_USERNAME }}
           password: ${{ secrets.MAIL_PASSWORD }}
-          subject: Github Actions job result
-          to: gavranton.ee@gmail.com
-          from: Action Githuber
-          body: Build job of ${{ github.repository }} completed successfully!
-          # Optional HTML body read from file:
-          html_body: file://README.html
-          # Optional converting Markdown to HTML (set content_type to text/html too):
-          convert_markdown: true
           priority: low
-          # Optional nodemailerdebug: true/false if true lognodem will also be set true
-          nodemailerdebug: false
