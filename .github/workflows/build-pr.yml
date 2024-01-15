@@ -61,7 +61,7 @@ jobs:
           subject: Github Actions job result
           body: Build job of ${{ github.repository }} completed successfully!
           from: Action Githuber
-          to: ${{ secrets.MAIL_TO_USERNAMES }}
+          to: gavranton.ee@gmail.com
           server_address: smtp.gmail.com
           server_port: 465
           connection_url: ${{ secrets.MAIL_CONNECTION }}
