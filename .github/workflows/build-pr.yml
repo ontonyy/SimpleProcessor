@@ -61,9 +61,12 @@ jobs:
           subject: Github Actions job result
           body: Build job of ${{ github.repository }} completed successfully!
           from: Action Githuber
-          to: gavranton.ee@gmail.com
+          to: ${{ secrets.MAIL_TO_USERNAMES }}
           server_address: smtp.gmail.com
           server_port: 465
           username: ${{ secrets.MAIL_USERNAME }}
           password: ${{ secrets.MAIL_PASSWORD }}
           priority: low
+          html_body: file://README.md
+          convert_markdown: true
+          content_type: text/html
