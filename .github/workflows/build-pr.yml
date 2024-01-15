@@ -59,7 +59,7 @@ jobs:
       - name: Send mail to Gmail
         uses: dawidd6/action-send-mail@v3
         with:
-          subject: [Github Actions] Build job of ${{ github.repository }} completed {{ steps.sonar.outcome }} from ${{ github.actor }}!
+          subject: [Github Actions] Build job of ${{ github.repository }} completed {{ steps.sonar.outcome }} from ${{ github.actor }}
           from: Action Githuber
           to: ${{ secrets.MAIL_TO_USERNAMES }}
           server_address: smtp.gmail.com
