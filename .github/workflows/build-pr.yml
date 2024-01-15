@@ -1,6 +1,6 @@
 name: Build/Test/Analyze PR
 
-run-name: ${{ github.actor }} is running PR - GitHub Actions 🚀
+run-name: ${{ github.actor }} is actioning PR 🚀
 
 on:
   pull_request:
@@ -44,6 +44,7 @@ jobs:
           restore-keys: ${{ runner.os }}-gradle
 
       - name: Analyze test with report (SonarQube)
+        id: sonar
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
@@ -58,8 +59,7 @@ jobs:
       - name: Send mail to Gmail
         uses: dawidd6/action-send-mail@v3
         with:
-          subject: Github Actions job result
-          body: Build job of ${{ github.repository }} completed successfully!
+          subject: [Github Actions] Build job of ${{ github.repository }} completed {{ steps.sonar.outcome }} from ${{ github.actor }}!
           from: Action Githuber
           to: ${{ secrets.MAIL_TO_USERNAMES }}
           server_address: smtp.gmail.com
