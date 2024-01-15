@@ -64,7 +64,6 @@ jobs:
           to: gavranton.ee@gmail.com
           server_address: smtp.gmail.com
           server_port: 465
-          connection_url: ${{ secrets.MAIL_CONNECTION }}
           username: ${{ secrets.MAIL_USERNAME }}
           password: ${{ secrets.MAIL_PASSWORD }}
           priority: low
