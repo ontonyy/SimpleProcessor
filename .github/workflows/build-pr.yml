@@ -7,6 +7,14 @@ on:
     types: [opened, synchronize, reopened]
     branches:
       - develop
+  workflow_dispatch:
+    inputs:
+      logLevel:
+        description: 'Log level'
+        required: true
+        default: 'warning'
+      tags:
+        description: 'Test scenario tags'
 
 concurrency:
   group: ${{ github.workflow }}-${{ github.head_ref || github.run_id }}
@@ -17,8 +25,7 @@ jobs:
     runs-on: ubuntu-latest
     name: Test/Analyze
     steps:
-      - name: Check out repository code
-        uses: actions/checkout@v4
+      - uses: actions/checkout@v4
 
       - name: List files in the repository
         run: ls -la ${{ github.workspace }}
@@ -35,6 +42,13 @@ jobs:
           path: ~/.sonar/cache
           key: ${{ runner.os }}-sonar
           restore-keys: ${{ runner.os }}-sonar
+
+      - name: Label when approved
+        uses: pullreminders/label-when-approved-action@main
+        env:
+          APPROVALS: "1"
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          ADD_LABEL: "approved"
 
       - name: Cache Gradle packages
         uses: actions/cache@v3
@@ -59,7 +73,7 @@ jobs:
       - name: Send mail to Gmail
         uses: dawidd6/action-send-mail@v3
         with:
-          subject: (Github Actions) Build job of ${{ github.repository }} completed {{ steps.sonar.outcome }} from ${{ github.actor }}
+          subject: (Github Actions) Build job of ${{ github.repository }} completed ${{ steps.sonar.outcome }} from ${{ github.actor }}
           from: Action Githuber
           to: ${{ secrets.MAIL_TO_USERNAMES }}
           server_address: smtp.gmail.com
