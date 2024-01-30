@@ -1,6 +1,10 @@
 ### App dockerization
-For dockerization app need to go to directory `/configs` and there run bash script `./dockerization.sh`.
+For dockerization app need to go to directory `/configs` and there run bash commands:
+* `docker compose up`
+* `docker compose down`
+
 Then if need more info just check logs by special commands like `docker logs simple-processor` for example.
+
 * Flow: Every time when running `./dockerization.sh` going rebuild of simple-processor (spring application) service 
   image, which will be used in docker compose, then any new changes will appear if run docker-compose.
 

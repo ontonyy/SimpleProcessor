@@ -1,11 +1,8 @@
 package com.simple.service;
 
-import static com.simple.service.config.SimpleVirtualExecutorsConfig.VIRTUAL_ASYNC_EXECUTOR;
-
 import java.util.Optional;
 import java.util.Set;
 
-import org.springframework.scheduling.annotation.Async;
 import org.springframework.stereotype.Service;
 
 import com.simple.models.dto.SimpleAddressDto;
@@ -73,7 +70,6 @@ public class SimpleServiceImpl implements SimpleService {
         return null;
     }
 
-    @Async(VIRTUAL_ASYNC_EXECUTOR)
     @Override
     public void doSimpleRequest(final SimpleKafkaRequest kafkaRequest) {
         log.info("Trying to find simple kafka request in db {}", kafkaRequest);
