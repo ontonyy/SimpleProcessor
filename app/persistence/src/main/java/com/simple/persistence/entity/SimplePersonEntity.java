@@ -15,7 +15,7 @@ import lombok.Data;
 import lombok.EqualsAndHashCode;
 
 @Data
-@Document
+@Document("Person")
 @Builder
 @EqualsAndHashCode(of = "id")
 public class SimplePersonEntity {

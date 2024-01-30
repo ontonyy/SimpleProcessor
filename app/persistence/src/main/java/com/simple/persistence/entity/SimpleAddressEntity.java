@@ -7,7 +7,7 @@ import lombok.Builder;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 
-@Document
+@Document("Address")
 @Data
 @Builder
 @EqualsAndHashCode(of = "id")
