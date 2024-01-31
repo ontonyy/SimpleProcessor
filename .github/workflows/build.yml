@@ -1,15 +1,11 @@
 name: Build/Release
 
-env:
-  PROJECT: virtuals
-
 on:
   push:
     branches:
       - develop
     paths-ignore:
       - '.github/**'
-      - 'README.md'
 
   workflow_dispatch:
     inputs:
