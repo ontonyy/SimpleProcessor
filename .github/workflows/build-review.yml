@@ -2,12 +2,11 @@ name: Label when approved
 on: pull_request_review
 
 jobs:
-
   label-when-approved:
     name: "Label when reviewed"
     runs-on: ubuntu-latest
     steps:
-      - name: "Get information about the original trigger of the run"
+      - name: Get information about the original trigger of the run
         uses: potiuk/get-workflow-origin@v1_6
         id: source-run-info
         with:
