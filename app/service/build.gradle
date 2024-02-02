@@ -4,6 +4,6 @@ dependencies {
     implementation project(":app:kafka")
     implementation project(":app:persistence")
 
-    implementation "org.springframework.boot:spring-boot-autoconfigure"
-    implementation "org.springframework.boot:spring-boot-starter-data-mongodb"
+    implementation libs.spring.autoconfigure
+    implementation libs.spring.data.mongodb
 }

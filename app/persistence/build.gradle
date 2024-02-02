@@ -1,8 +1,8 @@
 dependencies {
     implementation project(":app:models")
 
-    implementation "org.springframework.boot:spring-boot-starter-data-mongodb"
+    implementation libs.spring.data.mongodb
 
-    testImplementation "org.testcontainers:testcontainers"
-    testImplementation "org.springframework.boot:spring-boot-starter-test"
+    testImplementation libs.test.containers
+    testImplementation libs.spring.starter.test
 }
