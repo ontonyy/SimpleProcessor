@@ -1,6 +1,6 @@
 dependencies {
     implementation project(":app:models")
 
-    implementation "org.springframework.boot:spring-boot-starter-web"
-    implementation "jakarta.validation:jakarta.validation-api"
+    implementation libs.spring.starter.web
+    implementation libs.jakarta.validation.api
 }

@@ -10,12 +10,12 @@ dependencies {
     implementation project(":app:service-api")
     implementation project(":app:error-handling")
 
-    implementation("org.springframework.boot:spring-boot-starter-web")
-    implementation("org.springframework.boot:spring-boot-starter-actuator")
+    implementation libs.spring.starter.web
+    implementation libs.spring.starter.actuator
 
-    implementation platform("io.opentelemetry:opentelemetry-bom:${opentelemetry_version}")
-    implementation "io.opentelemetry:opentelemetry-api"
-    runtimeOnly "io.opentelemetry.javaagent:opentelemetry-javaagent:${opentelemetry_version}"
+    implementation platform(libs.opentelemetry.bom)
+    implementation libs.opentelemetry.api
+    runtimeOnly libs.opentelemetry.javaagent
 
 }
 

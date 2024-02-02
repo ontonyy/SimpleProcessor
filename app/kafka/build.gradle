@@ -2,8 +2,8 @@ dependencies {
     implementation project(":app:service-api")
     implementation project(":app:models")
 
-    implementation "org.springframework.boot:spring-boot-autoconfigure"
-    implementation "org.springframework.kafka:spring-kafka"
+    implementation libs.spring.autoconfigure
+    implementation libs.spring.kafka
 
-    testImplementation "org.springframework.kafka:spring-kafka-test"
+    testImplementation libs.spring.kafka.test
 }

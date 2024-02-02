@@ -1,0 +1,69 @@
+[versions]
+
+opentelemetry-version="1.32.0"
+springdoc-openapi-version="2.3.0"
+springframework-version="3.2.1"
+gradle-docker-plugin-version="6.7.0"
+sonarqube-gradle-plugin-version="4.4.1.3373"
+mapstruct-version="1.5.5.Final"
+
+[libraries]
+
+# [gradle]
+gradle-docker-plugin = { module = "com.bmuschko:gradle-docker-plugin", version.ref = "gradle-docker-plugin-version" }
+
+# [spring]
+spring-gradle-plugin = { module = "org.springframework.boot:spring-boot-gradle-plugin", version.ref = "springframework-version" }
+spring-data-mongodb = { module = "org.springframework.boot:spring-boot-starter-data-mongodb" }
+spring-autoconfigure = { module = "org.springframework.boot:spring-boot-autoconfigure" }
+spring-starter-actuator = { module = "org.springframework.boot:spring-boot-starter-actuator" }
+spring-starter-web = { module = "org.springframework.boot:spring-boot-starter-web" }
+spring-starter-data-redis = { module = "org.springframework.boot:spring-boot-starter-data-redis" }
+spring-kafka = { module = "org.springframework.kafka:spring-kafka" }
+
+# [spring testing]
+spring-starter-test = { module = "org.springframework.boot:spring-boot-starter-test" }
+spring-kafka-test = { module = "org.springframework.kafka:spring-kafka-test" }
+
+sonarqube-gradle-plugin = { module = "org.sonarsource.scanner.gradle:sonarqube-gradle-plugin", version.ref = "sonarqube-gradle-plugin-version" }
+
+# [Jackson]
+jackson-jaxb-annotations = { module = "com.fasterxml.jackson.module:jackson-module-jaxb-annotations" }
+jackson-datatype = { module = "com.fasterxml.jackson.datatype:jackson-datatype-jsr310" }
+
+slf4j-api = { module = "org.slf4j:slf4j-api" }
+
+lombok = { module = "org.projectlombok:lombok" }
+
+# [testing]
+assertj-core = { module = "org.assertj:assertj-core" }
+mockito-core = { module = "org.mockito:mockito-core" }
+mockito-junit-jupiter = { module = "org.mockito:mockito-junit-jupiter" }
+junit-jupiter-api = { module = "org.junit.jupiter:junit-jupiter-api" }
+junit-jupiter-engine = { module = "org.junit.jupiter:junit-jupiter-engine" }
+junit-jupiter-params = { module = "org.junit.jupiter:junit-jupiter-params" }
+
+# [test containers]
+test-containers = { module = "org.testcontainers:testcontainers" }
+
+# [OpenApi]
+springdoc-openapi = { module = "org.springdoc:springdoc-openapi-starter-webmvc-ui", version.ref = "springdoc-openapi-version" }
+
+# [OpenTelemetry]
+opentelemetry-api = { module = "io.opentelemetry:opentelemetry-api", version.ref = "opentelemetry-version" }
+opentelemetry-bom = { module = "io.opentelemetry:opentelemetry-bom", version.ref = "opentelemetry-version" }
+opentelemetry-javaagent = { module = "io.opentelemetry.javaagent:opentelemetry-javaagent", version.ref = "opentelemetry-version" }
+
+# [Micrometer]
+micrometer-prometheus = { module = "io.micrometer:micrometer-registry-prometheus" }
+
+# [MapStruct]
+mapstruct-processor = { module = "org.mapstruct:mapstruct-processor", version.ref = "mapstruct-version" }
+mapstruct = { module = "org.mapstruct:mapstruct", version.ref = "mapstruct-version" }
+
+jakarta-validation-api = { module = "jakarta.validation:jakarta.validation-api" }
+
+[bundles]
+
+# [testing]
+testing = ["junit-jupiter-engine", "junit-jupiter-api", "junit-jupiter-params", "spring-starter-test", "mockito-junit-jupiter", "mockito-core", "assertj-core"]

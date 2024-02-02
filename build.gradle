@@ -5,10 +5,9 @@ buildscript {
 	}
 
 	dependencies {
-		classpath "org.springframework.boot:spring-boot-gradle-plugin:${springframework_version}"
-		classpath "com.bmuschko:gradle-docker-plugin:${gradle_docker_plugin_version}"
-
-		classpath "org.sonarsource.scanner.gradle:sonarqube-gradle-plugin:${sonarqube_gradle_plugin_version}"
+		classpath libs.spring.gradle.plugin
+		classpath libs.gradle.docker.plugin
+		classpath libs.sonarqube.gradle.plugin
 	}
 }
 
