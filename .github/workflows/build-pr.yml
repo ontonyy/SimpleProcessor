@@ -65,7 +65,7 @@ jobs:
           report_paths: '**/build/test-results/test/TEST-*.xml'
 
       - name: Send mail to Gmail
-        if: ${{ github.actor != 'dependabot[bot]' }}
+        if: github.actor != 'dependabot[bot]'
         uses: dawidd6/action-send-mail@v3
         with:
           subject: (Github Actions) Build job of ${{ github.repository }} completed ${{ steps.sonar.outcome }} from ${{ github.actor }}
