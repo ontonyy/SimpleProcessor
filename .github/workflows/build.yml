@@ -37,7 +37,7 @@ jobs:
         env:
           SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-        run: ./gradlew clean build jacocoTestReport sonarqube --parallel
+        run: ./gradlew clean build jacocoTestReport sonar --parallel
 
   update:
     runs-on: ubuntu-latest

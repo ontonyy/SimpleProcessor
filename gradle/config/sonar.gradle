@@ -5,7 +5,7 @@ def paths = rootProject.subprojects.collect {
 }.findAll { new File(it).exists() }
 
 allprojects {
-    sonarqube {
+    sonar {
         properties {
             property "sonar.coverage.jacoco.xmlReportPaths", paths
             property "sonar.coverage.exclusions", ""
