@@ -62,6 +62,7 @@ mapstruct-processor = { module = "org.mapstruct:mapstruct-processor", version.re
 mapstruct = { module = "org.mapstruct:mapstruct", version.ref = "mapstruct-version" }
 
 jakarta-validation-api = { module = "jakarta.validation:jakarta.validation-api" }
+jakarta-servlet-api = { module = "jakarta.servlet:jakarta.servlet-api" }
 
 [bundles]
 
