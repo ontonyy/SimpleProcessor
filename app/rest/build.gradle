@@ -4,4 +4,6 @@ dependencies {
 
     implementation libs.springdoc.openapi
     implementation libs.micrometer.prometheus
+
+    implementation libs.jakarta.servlet.api
 }
