@@ -112,12 +112,6 @@ jobs:
           PR_BODY: ${{ steps.pr_details.outputs.data.body }}
           PERSONAL_TOKEN: ${{ secrets.PERSONAL_TOKEN }}
         run: |
-          UPDATED_BODY=$(cat <<EOF
-                            ### Issue link
-                            
-                            ${JIRA_URL}
-                            
-                            ${PR_BODY}
-                        EOF)
+          UPDATED_BODY="### Issue link<br><br>${JIRA_URL}<br><br>${PR_BODY}"
           gh auth login --with-token <<< "$PERSONAL_TOKEN"
           gh pr edit ${{ github.event.pull_request.number }} --body "$UPDATED_BODY"

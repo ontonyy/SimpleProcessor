@@ -1,0 +1,68 @@
+spring:
+  application:
+    name: SimpleProcessor
+  data:
+    mongodb:
+      database: tripto
+      username: root
+      password: 123456
+      authentication-database: admin
+      host: ${MONGO_HOST:localhost}
+      port: 27017
+      auto-index-creation: true
+    redis:
+      host: ${REDIS_HOST:localhost}
+      port: 6379
+  kafka:
+    bootstrap-servers: ${KAFKA_HOST:localhost}:9092
+    consumer:
+      group-id: events
+      bootstrap-servers: ${spring.kafka.bootstrap-servers}
+      value-deserializer: org.apache.kafka.common.serialization.ByteArrayDeserializer
+    listener:
+      concurrency: 32
+      ack-mode: manual_immediate
+    producer:
+      bootstrap-servers: ${spring.kafka.bootstrap-servers}
+      key-serializer: org.apache.kafka.common.serialization.StringSerializer
+      value-serializer: org.apache.kafka.common.serialization.ByteArraySerializer
+  mvc:
+    throw-exception-if-no-handler-found: true
+
+management:
+  endpoints:
+    web:
+      exposure:
+        include: prometheus
+      cors:
+        allowed-origins: http://localhost:8080
+        allowed-methods: "*"
+
+kafka:
+  topics:
+    simple:
+      name: simple.topic
+      partitions: 3
+      retention-ms: 86400000
+    message-poll-retry-sleep-s: 1
+
+simple:
+  logging:
+    prefix: ${LOGGING_PREFIX:Local}
+
+org:
+  jobrunr:
+    background-job-server:
+      enabled: true
+      worker-count: 10
+      poll-interval-in-seconds: 10
+      delete-succeeded-jobs-after: 4h
+      permanently-delete-deleted-jobs-after: 8h
+    dashboard:
+      enabled: true
+    database:
+      skip-create: true
+    job-scheduler:
+      enabled: true
+    miscellaneous:
+      allow-anonymous-data-usage: false
