@@ -1,7 +1,7 @@
 [versions]
 
 opentelemetry-version="1.32.0"
-springdoc-openapi-version="2.3.0"
+springdoc-openapi-version="2.5.0"
 springframework-version="3.2.1"
 gradle-docker-plugin-version="6.7.0"
 sonarqube-gradle-plugin-version="4.4.1.3373"
